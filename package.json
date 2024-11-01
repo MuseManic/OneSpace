@@ -1,0 +1,12 @@
+{
+  "name": "onespace",
+  "version": "1.0.0",
+  "description": "Demonstrating ability in ReactJS, Tailwind CSS, PHP using Yii Framework and a MYSQL Database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
