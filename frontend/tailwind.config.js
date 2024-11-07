@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",  // Include these paths
+    "./src/**/*.{js,jsx,ts,tsx}",  
     "./public/index.html",
   ],
   theme: {
@@ -14,7 +14,8 @@ module.exports = {
           DEFAULT: '#8fd6ce',
           dark: '#009eeb',
         },
-        customgreen: '#00ff00', // Your custom color
+        customgreen: '#00ff00', 
+        customdarkblue: '#284d5a'
       },
       keyframes: {
 

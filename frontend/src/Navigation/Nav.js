@@ -1,13 +1,28 @@
 // App.js
-import './Nav.css';
+
 import React from 'react';
-import { Route, Routes, Link} from 'react-router-dom';
+import { Route, Routes, useLocation, Link } from 'react-router-dom'; 
 import Welcome from '../Welcome/App';
 import Login from '../Login/login';
 import Register from '../Register/register';
+import Dashboard from '../Dashboard/DashboardMain';
+import DashboardMain from '../Dashboard/DashboardMain';
+
 
 function Nav() {
+
+  const location = useLocation();
+
+  // Check if the current path is "/dashboard"
+  const isDashboard = location.pathname === '/dashboard';
+
+  if (isDashboard) {
+    return <><DashboardMain/></>;
+  }
+
   return (
+
+    
     
       <div>
         <NavBar />
@@ -43,6 +58,7 @@ function NavBar() {
             <Route path="/" element={<Welcome />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/Dashboard" element={<Dashboard />} />
           </Routes>
         </main>
       </div>

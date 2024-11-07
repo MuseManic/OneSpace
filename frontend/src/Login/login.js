@@ -1,6 +1,7 @@
 // App.js
 
 import React from 'react';
+import { Route, Routes, Link} from 'react-router-dom';
 
 function Login() {
   return (
@@ -45,12 +46,12 @@ function LoginForm() {
             </div>
   
             {/* Submit Button */}
-            <button
+            <Link to="/dashboard"
               type="submit"
-              className="w-full py-2 mt-4 text-customblue bg-white rounded-lg font-semibold hover:bg-customblue hover:text-white transition duration-300"
-            >
+              className="w-full text-center py-2 mt-4 text-customblue bg-white rounded-lg font-semibold hover:bg-customblue hover:text-white transition duration-300 inline-block"
+              >
               Login
-            </button>
+            </Link>
           </form>
         </div>
       </div>
