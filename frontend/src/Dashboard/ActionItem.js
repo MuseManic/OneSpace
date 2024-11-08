@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ActionDeviceRequestsPanel from './ActionDeviceRequestsPanel';
 
-function ActionItem() {
+
+function ActionItem({setSelectedAction}) {
   const [OpenFrame, CloseFrame] = useState(false);
   const [selectedNum, setSelectedNum] = useState(null);
 
@@ -18,11 +20,13 @@ function ActionItem() {
       <TopActionBlock selectedNum={selectedNum} />
       {!OpenFrame && (
         <>
-          <BottomActionBlock />
+          <BottomActionBlock setSelectedNum={handleClick} />
           <AccessDeviceRequest setSelectedNum={handleClick} />
           <IncidentReports />
         </>
       )}
+  
+     
 
       <button
         onClick={toggleDropdown}
@@ -30,6 +34,8 @@ function ActionItem() {
       >
         {OpenFrame ? '▲' : '▼'}
       </button>
+
+      {selectedNum === 3 && <ActionDeviceRequestsPanel setSelectedAction={setSelectedAction}  />}
     </>
   );
 }
@@ -49,34 +55,39 @@ function TopActionBlock({ selectedNum }) {
   );
 }
 
-function BottomActionBlock() {
+function BottomActionBlock({ setSelectedNum }) {
   return (
     <div className="flex space-x-4">
-      <Link to="/somewhere" className="flex-1 p-6 bg-white text-customdarkblue rounded-lg shadow-lg hover:bg-slate-400 transition duration-300 cursor-pointer">
+      <Link onClick={() => setSelectedNum(2)} className="flex-1 p-6 bg-white text-customdarkblue rounded-lg shadow-lg hover:bg-slate-400 transition duration-300 cursor-pointer">
         <h3 className="text-xl font-bold">User Join Request</h3>
+        <h3 className="text-xl font-bold text-center">2</h3>
       </Link>
-      <Link to="/somewhere" className="flex-1 p-6 bg-white text-customdarkblue rounded-lg shadow-lg hover:bg-slate-400 transition duration-300 cursor-pointer">
+      <Link onClick={() => setSelectedNum(2)} className="flex-1 p-6 bg-white text-customdarkblue rounded-lg shadow-lg hover:bg-slate-400 transition duration-300 cursor-pointer">
         <h3 className="text-xl font-bold">Booking Requests</h3>
+        <h3 className="text-xl font-bold text-center">2</h3>
       </Link>
-      <Link to="/somewhere" className="flex-1 p-6 bg-white text-red-700 rounded-lg shadow-lg hover:bg-slate-400 transition duration-300 cursor-pointer">
-        <h3 className="text-xl font-bold">Device Health Alerts</h3>
+      <Link onClick ={() => setSelectedNum(1)} className="flex-1 p-6 bg-white text-red-700 rounded-lg shadow-lg hover:bg-slate-400 transition duration-300 cursor-pointer">
+        <h3 className="text-l font-bold">Device Health Alerts</h3>
+        <h3 className="text-xl font-bold text-center">1</h3>
       </Link>
     </div>
   );
 }
 
 function AccessDeviceRequest({ setSelectedNum }) {
-  return (
-    <Link onClick={() => setSelectedNum(3)}  className="flex flex-col items-start p-6 bg-white text-customdarkblue rounded-lg shadow-lg hover:bg-slate-400 transition duration-300 cursor-pointer">
-      <div className="flex items-center space-x-2">
-        <img src="./key.png" alt="Key icon" className="w-8 h-8 mt-1" />
-        <h3 className="text-xl font-bold">Access Device Requests</h3>
-        <AccessDeviceRequestsSub setSelectedNum={setSelectedNum} />
-      </div>
-    </Link>
-  );
-}
-
+    return (
+      <Link 
+        onClick={() => setSelectedNum(3)}  // Set selectedNum to 3 when clicked
+        className="flex flex-col items-start p-6 bg-white text-customdarkblue rounded-lg shadow-lg hover:bg-slate-400 transition duration-300 cursor-pointer"
+      >
+        <div className="flex items-center space-x-2">
+          <img src="./key.png" alt="Key icon" className="w-8 h-8 mt-1" />
+          <h3 className="text-xl font-bold">Access Device Requests</h3>
+          <AccessDeviceRequestsSub setSelectedNum={setSelectedNum} />
+        </div>
+      </Link>
+    );
+  }
 function AccessDeviceRequestsSub({ setSelectedNum }) {
     return (
       <div className="flex bg-white shadow-lg rounded-lg overflow-hidden max-w-md mx-auto mt-4">
@@ -129,7 +140,7 @@ function AccessDeviceRequestsSub({ setSelectedNum }) {
 
 function IncidentReports() {
   return (
-    <Link to="/somewhere" className="flex-1 p-6 bg-white text-customdarkblue rounded-lg shadow-lg hover:bg-slate-400 transition duration-300 cursor-pointer">
+    <Link  className="flex-1 p-6 bg-white text-customdarkblue rounded-lg shadow-lg hover:bg-slate-400 transition duration-300 cursor-pointer">
       <div className="flex space-x-2 items-center">
         <img src="./warning.png" alt="Warning icon" className="w-8 h-8 mt-1" />
         <h3 className="text-xl font-bold">Incident Reports</h3>
